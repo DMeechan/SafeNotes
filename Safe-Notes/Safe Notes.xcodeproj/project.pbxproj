@@ -13,7 +13,6 @@
 		65374E201F24C63300EAB160 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65374E1F1F24C63300EAB160 /* Assets.xcassets */; };
 		65374E231F24C63300EAB160 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65374E211F24C63300EAB160 /* LaunchScreen.storyboard */; };
 		65374E341F24C93500EAB160 /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65374E331F24C93500EAB160 /* EditNoteViewController.swift */; };
-		65374E371F24CC6D00EAB160 /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65374E361F24CC6D00EAB160 /* NotesTableViewController.swift */; };
 		657256EE1F2DF6650052B3A8 /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657256ED1F2DF6650052B3A8 /* NotesTableViewCell.swift */; };
 		658482DD1F2D5A58001C33A7 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658482DC1F2D5A58001C33A7 /* NotesViewController.swift */; };
 		65C9D3681F2D42070099425F /* LockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9D3671F2D42070099425F /* LockedViewController.swift */; };
@@ -35,7 +34,6 @@
 		65374E241F24C63300EAB160 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65374E2A1F24C7AD00EAB160 /* Safe Notes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Safe Notes.entitlements"; sourceTree = "<group>"; };
 		65374E331F24C93500EAB160 /* EditNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditNoteViewController.swift; path = "Safe Notes/EditNoteViewController.swift"; sourceTree = SOURCE_ROOT; };
-		65374E361F24CC6D00EAB160 /* NotesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableViewController.swift; sourceTree = "<group>"; };
 		657256ED1F2DF6650052B3A8 /* NotesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
 		658482DC1F2D5A58001C33A7 /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		65C9D3671F2D42070099425F /* LockedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockedViewController.swift; sourceTree = "<group>"; };
@@ -91,13 +89,11 @@
 		65C9D3611F2D40DE0099425F /* CONTROLLER */ = {
 			isa = PBXGroup;
 			children = (
+				65C9D36B1F2D42330099425F /* LoginViewController.swift */,
 				658482DC1F2D5A58001C33A7 /* NotesViewController.swift */,
-				657256ED1F2DF6650052B3A8 /* NotesTableViewCell.swift */,
-				65374E361F24CC6D00EAB160 /* NotesTableViewController.swift */,
 				65374E331F24C93500EAB160 /* EditNoteViewController.swift */,
 				65C9D3671F2D42070099425F /* LockedViewController.swift */,
 				65C9D3691F2D420F0099425F /* SettingsViewController.swift */,
-				65C9D36B1F2D42330099425F /* LoginViewController.swift */,
 			);
 			name = CONTROLLER;
 			sourceTree = "<group>";
@@ -107,6 +103,7 @@
 			children = (
 				65374E191F24C63300EAB160 /* Main.storyboard */,
 				65374E211F24C63300EAB160 /* LaunchScreen.storyboard */,
+				657256ED1F2DF6650052B3A8 /* NotesTableViewCell.swift */,
 			);
 			name = VIEW;
 			sourceTree = "<group>";
@@ -284,7 +281,6 @@
 				658482DD1F2D5A58001C33A7 /* NotesViewController.swift in Sources */,
 				65374E1E1F24C63300EAB160 /* Safe_Notes.xcdatamodeld in Sources */,
 				657256EE1F2DF6650052B3A8 /* NotesTableViewCell.swift in Sources */,
-				65374E371F24CC6D00EAB160 /* NotesTableViewController.swift in Sources */,
 				65C9D36A1F2D420F0099425F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

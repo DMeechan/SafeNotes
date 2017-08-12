@@ -125,7 +125,7 @@ Please login using your fingerprint</string>
                     </view>
                     <tabBarItem key="tabBarItem" title="LOCK" id="9D4-EE-V5d"/>
                     <connections>
-                        <segue destination="7hE-A8-w6j" kind="show" identifier="switchToLogin" id="Lu0-tF-hXl"/>
+                        <segue destination="7hE-A8-w6j" kind="show" identifier="segueToLogin" id="Lu0-tF-hXl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8iS-eF-f4d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -145,7 +145,7 @@ Please login using your fingerprint</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ndt-TN-RBg">
-                                <rect key="frame" x="16" y="90" width="97" height="30"/>
+                                <rect key="frame" x="16" y="90" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -161,7 +161,7 @@ Please login using your fingerprint</string>
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H9A-si-tgK">
-                                <rect key="frame" x="16" y="187" width="240" height="128"/>
+                                <rect key="frame" x="16" y="128" width="343" height="482"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -171,10 +171,14 @@ Please login using your fingerprint</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="contentField" destination="H9A-si-tgK" id="cgV-dG-ROI"/>
+                        <outlet property="titleField" destination="ndt-TN-RBg" id="6uC-B8-Ru1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4d-u1-BpP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="412" y="833"/>
+            <point key="canvasLocation" x="412" y="832.53373313343332"/>
         </scene>
         <!--NotesViewController-->
         <scene sceneID="r9o-gG-9Tn">
@@ -205,6 +209,9 @@ Please login using your fingerprint</string>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                         <state key="normal" title="Add"/>
+                                        <connections>
+                                            <action selector="clickAdd:" destination="INm-mE-RFy" eventType="touchUpInside" id="fzX-7a-t5h"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -222,34 +229,48 @@ Please login using your fingerprint</string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="titleLabel" text="Hello world this is a title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FoZ-I3-BOc">
-                                                    <rect key="frame" x="8" y="8" width="359" height="23"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="titleLabel" text="Hello title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FoZ-I3-BOc" userLabel="Title">
+                                                    <rect key="frame" x="8" y="8" width="365" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="19"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="previewLabel" text="Hello world this is a preview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM2-nM-rD8">
-                                                    <rect key="frame" x="8" y="35.5" width="359" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="previewLabel" text="Hello preview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM2-nM-rD8" userLabel="Preview">
+                                                    <rect key="frame" x="8" y="36" width="365" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="contentLabel" text="Hello content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dva-M9-HaR" userLabel="Content">
+                                                    <rect key="frame" x="8" y="21" width="365" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="19"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="wM2-nM-rD8" firstAttribute="leading" secondItem="0oJ-XY-RZ8" secondAttribute="leadingMargin" id="29m-B4-2PW"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="wM2-nM-rD8" secondAttribute="bottom" id="2YO-Ou-hBQ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="FoZ-I3-BOc" secondAttribute="trailing" id="8f5-K5-bzg"/>
-                                                <constraint firstItem="FoZ-I3-BOc" firstAttribute="top" secondItem="0oJ-XY-RZ8" secondAttribute="topMargin" id="KEw-Hj-5Wa"/>
-                                                <constraint firstItem="FoZ-I3-BOc" firstAttribute="leading" secondItem="0oJ-XY-RZ8" secondAttribute="leadingMargin" id="Ti9-Ib-2gt"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wM2-nM-rD8" secondAttribute="trailing" id="WY1-2s-HY8"/>
+                                                <constraint firstAttribute="trailing" secondItem="FoZ-I3-BOc" secondAttribute="trailing" constant="2" id="Gpx-4I-8DA"/>
+                                                <constraint firstItem="dva-M9-HaR" firstAttribute="leading" secondItem="0oJ-XY-RZ8" secondAttribute="leading" constant="8" id="Mba-K2-wXk"/>
+                                                <constraint firstAttribute="trailing" secondItem="wM2-nM-rD8" secondAttribute="trailing" constant="2" id="PXE-S8-NzK"/>
+                                                <constraint firstAttribute="trailing" secondItem="dva-M9-HaR" secondAttribute="trailing" constant="2" id="Su2-id-IXb"/>
+                                                <constraint firstItem="FoZ-I3-BOc" firstAttribute="top" secondItem="0oJ-XY-RZ8" secondAttribute="top" constant="8" id="VMs-pe-r0Y"/>
+                                                <constraint firstItem="FoZ-I3-BOc" firstAttribute="leading" secondItem="0oJ-XY-RZ8" secondAttribute="leading" constant="8" id="WuQ-Fa-9RU"/>
+                                                <constraint firstItem="dva-M9-HaR" firstAttribute="centerY" secondItem="0oJ-XY-RZ8" secondAttribute="centerY" id="ei7-ed-mzq"/>
+                                                <constraint firstItem="wM2-nM-rD8" firstAttribute="leading" secondItem="0oJ-XY-RZ8" secondAttribute="leading" constant="8" id="nyY-4v-YwQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="wM2-nM-rD8" secondAttribute="bottom" constant="8" id="xyn-eT-6sY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="contentLabel" destination="dva-M9-HaR" id="jYk-Rb-YBE"/>
                                             <outlet property="previewLabel" destination="wM2-nM-rD8" id="xsZ-vL-QME"/>
                                             <outlet property="titleLabel" destination="FoZ-I3-BOc" id="ZEh-0f-wYk"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="INm-mE-RFy" id="GXh-pC-Kyj"/>
+                                    <outlet property="delegate" destination="INm-mE-RFy" id="TZd-f8-xWp"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -267,12 +288,12 @@ Please login using your fingerprint</string>
                     <connections>
                         <outlet property="newNoteTitleField" destination="bw6-ye-LIl" id="Xnr-nl-FQi"/>
                         <outlet property="tableView" destination="eUb-hT-kqw" id="miR-dD-dqT"/>
-                        <segue destination="wx0-TX-GwO" kind="show" identifier="switchToEditNote" id="Tyy-TL-G4d"/>
+                        <segue destination="wx0-TX-GwO" kind="show" identifier="segueToEditNote" id="DwF-OM-3eT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSh-fB-qmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319" y="833"/>
+            <point key="canvasLocation" x="-319.19999999999999" y="832.53373313343332"/>
         </scene>
         <!--tabBarController-->
         <scene sceneID="RBM-Wo-bRo">

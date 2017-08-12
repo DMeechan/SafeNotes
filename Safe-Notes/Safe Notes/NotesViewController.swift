@@ -10,12 +10,11 @@ import UIKit
 import RealmSwift
 
 class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-  @IBOutlet weak var newNoteTitleField: UITextField!
-  @IBOutlet weak var tableView: UITableView!
-    
+  
   var notes = [Note]()
   var user = User()
+  
+  var selectedNoteIndex: Int = 0
   
   func loadSampleData() {
     user.name = "Jim"
@@ -37,23 +36,14 @@ class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDat
   }
   
   override func viewDidLoad() {
-    print("pls")
+    super.viewDidLoad()
     loadSampleData()
-    print("ya?")
     
   }
   
-  func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
-  }
-  
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    print("I count... \(notes.count)")
-    return notes.count
-  }
+  // MARK: TableView
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    print("CELL IDENTIFIED")
     let cellIdentifier = "NotesTableViewCell"
     
     guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? NotesTableViewCell else {
@@ -62,16 +52,111 @@ class NotesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let note = notes[indexPath.row]
     
-    cell.titleLabel.text = note.title
-    cell.previewLabel.text = note.content
-    
+    if note.content == "" {
+      cell.titleLabel.text = ""
+      cell.previewLabel.text = ""
+      cell.contentLabel.text = note.title
+      
+    } else {
+      cell.titleLabel.text = note.title
+      cell.previewLabel.text = note.content
+      cell.contentLabel.text = ""
+      
+    }
     
     return cell
     
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // User has clicked on item in TableView
+    print("USER HAS CLICKED ROW: \(indexPath.row)")
+    selectedNoteIndex = indexPath.row
+    performSegue(withIdentifier: "segueToEditNote", sender: self)
+    
+  }
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    // Return number of sections
+    return 1
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // Returns how many cells to show in table
+    return notes.count
+  }
+  
+  func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+    // Allow moving cells
+    return true
+  }
+  
+  func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    // Sort out what to do when moving cells
+    let note = notes[sourceIndexPath.row]
+    notes.remove(at: sourceIndexPath.row)
+    notes.insert(note, at: destinationIndexPath.row)
+    
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    // Allow cell deletion
+    if editingStyle == UITableViewCellEditingStyle.delete {
+      notes.remove(at: indexPath.row)
+      tableView.reloadData()
+    }
     
   }
   
   func addNote() {
     
+    if newNoteTitleField.text != "" {
+      let note = Note()
+      note.title = newNoteTitleField.text!
+      
+      notes.append(note)
+      // note.save()
+      
+      newNoteTitleField.text = ""
+      
+    }
+    
+    tableView.reloadData()
+    hideKeyboard()
+    
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "segueToEditNote" {
+      let destination = segue.destination as? EditNoteViewController
+      destination?.note = self.notes[selectedNoteIndex]
+      
+    }
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    hideKeyboard()
+  }
+  
+  func hideKeyboardOnTableViewClick() {
+    // Hide keyboard when TableView clicked
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(NotesViewController.hideKeyboard))
+    tapGesture.cancelsTouchesInView = true
+    tableView.addGestureRecognizer(tapGesture)
+    
+  }
+  
+  func hideKeyboard() {
+    UIView.animate(withDuration: 0.2, animations: {
+      self.view.endEditing(true) //This will hide the keyboard
+    })
+    
+  }
+  
+  @IBOutlet weak var newNoteTitleField: UITextField!
+  @IBOutlet weak var tableView: UITableView!
+  
+  @IBAction func clickAdd(_ sender: Any) {
+    addNote()
   }
 }
